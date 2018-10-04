@@ -1,0 +1,13 @@
+Package: simplerspec.sae
+Title: Infrared spectroscopy data checking and workflow routines
+Version: 0.0.0.9000
+Authors@R: 
+    person(given = "Philipp",
+           family = "Baumann",
+           role = c("aut", "cre"),
+           email = "philipp.baumann@usys.ethz.ch")
+Description: Perform directory and file checks for measurement and metadata.
+    Initiate data preparation routines.
+License: What license it uses
+Encoding: UTF-8
+LazyData: true
