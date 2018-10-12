@@ -29,7 +29,11 @@ devtools::install_github("philipp-baumann/simplerspec.opus")
 ## Perform folder, file, and data and metadata integrity tests
 
 This test verifies whether both metadata and data are
-complete, for each of the "date" folders separately.
+complete, for each of the "date" folders separately. The binary Bruker OPUS
+files, that contain all spectral measurements and aquisition parameters, are 
+located in folders named by date. The names are unluckily in the format 
+`"YYYY_M_D"`. That does not follow  
+[ISO 8601](https://en.wikipedia.org/wiki/ISO_8601).
 
 ```{r, eval = FALSE}
 # Load packages
@@ -47,12 +51,6 @@ struct_data_metadata(data_root = here("data", "spectra", "2018-BDM"))
 This final check ensures that there is a minimum chance that samples were wrongly 
 labelled or measurement positions were swapped.
 
-This workflow has one main assumption:
-
-* The binary Bruker OPUS files, that contain all spectral measurements and
-  aquisition parameters, are located in folders named by date. The names
-  are unluckily in the format `"YYYY_M_D"`. That does not follow 
-  [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601).
    
 ### Test category 1:
 
