@@ -11,3 +11,11 @@ Description: Perform directory and file checks for measurement and metadata.
 License: What license it uses
 Encoding: UTF-8
 LazyData: true
+Imports: 
+    rlang,
+    purrr,
+    here,
+    readODS,
+    tibble,
+    stringr
+RoxygenNote: 6.1.0
