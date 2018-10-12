@@ -32,11 +32,11 @@ You can do the test using the function below:
 struct_data_metadata(data_root = here("data", "spectra", "2018-BDM"))
 ```
 
-TThis test ensures that there is a minimum chance that samples were wrongly labelled or measurement positions were swapped.
+This test ensures that there is a minimum chance that samples were wrongly labelled or measurement positions were swapped.
 
 ### Test category 1:
 
--   **Expectation:** Metadata are Open Office spreadsheets with extension `.ods`. The file name has a date prefix of format `YYYY-MM-DD`
+-   **Expectation:** Metadata are Open Office spreadsheets with extension `.ods`. The file name has a date prefix of format `YYYY-MM-DD`.
 
 -   **Test:** Test whether every measurement folder has a corresponding metadata file. This is done by extracting `"YYYY_M_D"` from the metadata file names, and converting to `"YYYY-MM-DD"`, and check if metadata file name information and and folder names are all identical.
 
@@ -48,7 +48,7 @@ TThis test ensures that there is a minimum chance that samples were wrongly labe
 
 ### Tests category 3: All OPUS files have the correct complete metadata and vice versa
 
--   **Expectations:**: The metadata spreadsheets contain a column `pos` that specifies the well plate positions, and also a column `sample_id`. The `sample_id` of a sample needs to be unique. The OPUS files that are generated after measurements have a `_<plate-position>` suffix after a `sample_id` string.
+-   **Expectations:** The metadata spreadsheets contain a column `pos` that specifies the well plate positions, and also a column `sample_id`. The `sample_id` of a sample needs to be unique. The OPUS files that are generated after measurements have a `_<plate-position>` suffix after a `sample_id` string.
 
--   **Test:**: In order to check that there is a metadata entry for each measured file, file names are reconstructed from `sample_id` and `pos` information. Further, repetition numbers starting from 0 are sequentially numbered by an integer increasing by 1, are reconstructed as file extension
+-   **Test:** In order to check that there is a metadata entry for each measured file, file names are reconstructed from `sample_id` and `pos` information. Further, repetition numbers starting from 0 are sequentially numbered by an integer increasing by 1, are reconstructed as file extension
     `.<repetition_number>`. This is what is expected to be generated from the measurements managed by the Bruker OPUS lab interface.

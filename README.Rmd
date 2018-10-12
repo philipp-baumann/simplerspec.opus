@@ -74,13 +74,13 @@ labelled or measurement positions were swapped.
 ### Tests category 3: All OPUS files have the correct complete metadata and vice versa
 
   
-* **Expectations:**: The metadata spreadsheets contain a column `pos` that
+* **Expectations:** The metadata spreadsheets contain a column `pos` that
   specifies the well plate positions, and also a column `sample_id`. The
   `sample_id` of a sample needs to be unique. The OPUS files that are generated 
   after measurements have a `_<plate-position>` suffix after a `sample_id`
   string.
   
-* **Test:**: In order to check that there is a metadata entry for each measured
+* **Test:** In order to check that there is a metadata entry for each measured
   file, file names are reconstructed from `sample_id` and `pos` information. 
   Further, repetition numbers starting from 0 are sequentially numbered by an
   integer increasing by 1, are reconstructed as file extension  
