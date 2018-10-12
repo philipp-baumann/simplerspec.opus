@@ -49,7 +49,7 @@ test_data_metadata <- function(data_root, pattern = "\\.ods$") {
   data_missing <- Filter(function(x) nrow(x) > 1, data_notin_metadata)
   
   if (length(metadata_missing) == 0 && length(data_missing) == 0) {
-    message("Measurement data files and metadata record are complete.")
+    message("Measurement data files and metadata records are complete.")
   } else if (length(metadata_missing) > 0 && length(data_missing) > 0) {
     stop(paste("Measurment data files and metadata are not complete.",
       "Metadata entries for the following measurement data <files are missing:",

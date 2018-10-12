@@ -34,8 +34,6 @@ test_data_metadata(data_root = here("data", "spectra", "2018-BDM"))
 
 This test ensures that there is a minimum chance that samples were wrongly labelled or measurement positions were swapped.
 
-This could be an example test message when data and metadata are not following expectations:
-
 ### Test category 1:
 
 -   **Expectation:** Metadata are Open Office spreadsheets with extension `.ods`. The file name has a date prefix of format `YYYY-MM-DD`.
@@ -54,3 +52,42 @@ This could be an example test message when data and metadata are not following e
 
 -   **Test:** In order to check that there is a metadata entry for each measured file, file names are reconstructed from `sample_id` and `pos` information. Further, repetition numbers starting from 0 are sequentially numbered by an integer increasing by 1, are reconstructed as file extension
     `.<repetition_number>`. This is what is expected to be generated from the measurements managed by the Bruker OPUS lab interface.
+
+This could be an example test message when data and metadata are not following expectations:
+
+``` r
+# > test_data_metadata(data_root = here("data", "spectra", "2018-BDM"))
+# Each measurement folder has a corresponding metadata file.
+# `date` column entries in the metadata spreadsheet(s)
+#       correspond to the expected measurement folder name (date) in the metadata
+#       file name(s)
+# Error in struct_data_metadata(data_root = here("data", "spectra", "2018-BDM")) : 
+#   Measurment data files and metadata are not complete. Metadata entries for the following measurement data <files are missing: list(date = c("2018-10-02", "2018-10-02", "2018-10-02", "2018-10-02", "2018-10-02", "2018-10-02", "2018-10-02", "2018-10-02", "2018-10-02", "2018-10-02", "2018-10-02", "2018-10-02"), sample_id = c(NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA), sample_id_pos = c("NA_A4", "NA_B4", "NA_C4", "NA_D4", "NA_A5", "NA_B5", "NA_C5", "NA_D5", "NA_A6", "NA_B6", "NA_C6", "NA_D6"), plate_no = c(6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6), pos = c("A4", "B4", "C4", "D4", "A5", "B5", "C5", "D5", "A6", "B6", "C6", "D6"
+# ), meas_folder_exp = c("2018-10-02", "2018-10-02", "2018-10-02", "2018-10-02", "2018-10-02", "2018-10-02", "2018-10-02", "2018-10-02", "2018-10-02", "2018-10-02", "2018-10-02", "2018-10-02"), meas_rep_meta = c(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), file_id = c("NA_A4.0", "NA_B4.0", "NA_C4.0", "NA_D4.0", "NA_A5.0", "NA_B5.0", "NA_C5.0", "NA_D5.0", "NA_A6.0", "NA_B
+```
+
+In that case, have a look at the message(s), check the metadata spreadsheets, fix accordingly, and finally re-test. If tests succeed, you will receive e.g.
+
+``` r
+# > test_data_metadata(data_root = here("data", "spectra", "2018-BDM"))
+# Each measurement folder has a corresponding metadata file.
+# `date` column entries in the metadata spreadsheet(s)
+#       correspond to the expected measurement folder name (date) in the metadata
+#       file name(s)
+# Measurement data files and metadata records are complete.
+# # A tibble: 3,438 x 10
+#    date  sample_id sample_id_pos plate_no pos   meas_folder_exp meas_rep_meta file_id
+#    <chr> <chr>     <chr>            <int> <chr> <chr>                   <int> <chr>  
+#  1 2018… 30017 KB… 30017 KB017 …        1 B1    2018-09-03                  0 30017 …
+#  2 2018… 30017 KB… 30017 KB017 …        3 B1    2018-09-03                  1 30017 …
+#  3 2018… 30017 KB… 30017 KB017 …        4 B1    2018-09-03                  2 30017 …
+#  4 2018… 30017 KB… 30017 KB017 …        5 B1    2018-09-03                  3 30017 …
+#  5 2018… 30017 KB… 30017 KB017 …        6 B1    2018-09-03                  4 30017 …
+#  6 2018… 30017 KB… 30017 KB017 …        7 B1    2018-09-03                  5 30017 …
+#  7 2018… 30017 KB… 30017 KB017 …        8 B1    2018-09-03                  6 30017 …
+#  8 2018… 30017 KB… 30017 KB017 …        9 B1    2018-09-03                  7 30017 …
+#  9 2018… 30017 KB… 30017 KB017 …        2 D1    2018-09-03                  0 30017 …
+# 10 2018… 30015 KB… 30015 KB015 …        1 C1    2018-09-03                  0 30015 …
+# # ... with 3,428 more rows, and 2 more variables: sample_id_reps <int>,
+# #   date_file <chr>
+```
