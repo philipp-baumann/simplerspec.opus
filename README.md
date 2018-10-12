@@ -32,7 +32,7 @@ You can do the test using the function below:
 struct_data_metadata(data_root = here("data", "spectra", "2018-BDM"))
 ```
 
-This final check ensures that there is a minimum chance that samples were wrongly labelled or measurement positions were swapped.
+TThis test ensures that there is a minimum chance that samples were wrongly labelled or measurement positions were swapped.
 
 ### Test category 1:
 
