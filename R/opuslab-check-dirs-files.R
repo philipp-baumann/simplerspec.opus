@@ -196,7 +196,7 @@ read_metadata_files <- function(data_root, pattern = "\\.ods$") {
 # Zero-fill Bruker OPUS Lab software folder names. These are generated for each
 # date when measurements are done, and come in the format `YYYY_M_D`,
 # which does not fulfill ISO standards. These functions returns a character 
-# vector of folder names that are converted to `YYYY-DD-MM`
+# vector of folder names that are converted to `YYYY-MM-DD`
 
 zerofill_date <- function(data_root) {
   # List all folders names
