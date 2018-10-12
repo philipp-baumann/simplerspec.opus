@@ -3,12 +3,12 @@
 simplerspec.opus
 ================
 
-The goal of simplerspec.sae is to facilitate spectral measurement workflows for Bruker spectrometers. It is tailored to file outputs and directory structures produced by the Bruker OPUS and OPUS Lab software.
+The goal of simplerspec.opus is to facilitate spectral measurement workflows for Bruker spectrometers. It is tailored to file outputs and directory structures produced by the Bruker OPUS and OPUS Lab software.
 
 Installation
 ------------
 
-You can install the released version of simplerspec.opus using
+You can install the most recent version of simplerspec.opus using
 
 ``` r
 devtools::install_github("philipp-baumann/simplerspec.opus")
@@ -47,7 +47,7 @@ This workflow has one main assumption:
 
 -   **Test:** Test whether the `date` column entries are matching the expanded measurement folders for each date.
 
-### Tests category 3: All OPUS files have the correct metadata and vice versa
+### Tests category 3: All OPUS files have the correct complete metadata and vice versa
 
 -   **Expectations:**: The metadata spreadsheets contain a column `pos` that specifies the well plate positions, and also a column `sample_id`. The `sample_id` of a sample needs to be unique. The OPUS files that are generated after measurements have a `_<plate-position>` suffix after a `sample_id` string.
 
