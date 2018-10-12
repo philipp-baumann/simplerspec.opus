@@ -29,10 +29,12 @@ lapply(pkgs, library, character.only = TRUE)
 You can do the test using the function below:
 
 ``` r
-struct_data_metadata(data_root = here("data", "spectra", "2018-BDM"))
+test_data_metadata(data_root = here("data", "spectra", "2018-BDM"))
 ```
 
 This test ensures that there is a minimum chance that samples were wrongly labelled or measurement positions were swapped.
+
+This could be an example test message when data and metadata are not following expectations:
 
 ### Test category 1:
 

@@ -5,7 +5,7 @@
 #' @description Perform folder, file naming convention, and data and metadata
 #' integrity tests.
 #' @export
-struct_data_metadata <- function(data_root, pattern = "\\.ods$") {
+test_data_metadata <- function(data_root, pattern = "\\.ods$") {
   data_folders <- list.dirs(data_root, full.names = FALSE, recursive = FALSE)
   # List of binary OPUS files per date
   date_files_paths <- map(set_names(data_folders),
