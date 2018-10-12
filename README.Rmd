@@ -48,14 +48,14 @@ struct_data_metadata(data_root = here("data", "spectra", "2018-BDM"))
 ```
 
 
-TThis test ensures that there is a minimum chance that samples were wrongly 
+This test ensures that there is a minimum chance that samples were wrongly 
 labelled or measurement positions were swapped.
 
    
 ### Test category 1:
 
 * **Expectation:** Metadata are Open Office spreadsheets with extension
-  `.ods`. The file name has a date prefix of format `YYYY-MM-DD`
+  `.ods`. The file name has a date prefix of format `YYYY-MM-DD`.
 
 * **Test:** Test whether every measurement folder has a corresponding 
   metadata file. This is done by extracting `"YYYY_M_D"` from
