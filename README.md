@@ -17,6 +17,8 @@ devtools::install_github("philipp-baumann/simplerspec.opus")
 Perform folder, file, and data and metadata integrity tests
 -----------------------------------------------------------
 
+This condensed integrity test verifies whether both metadata and data are complete, for each of the date folders separately.
+
 ``` r
 # Load packages
 pkgs <- c("simplerspec.opus", "here")
@@ -28,8 +30,6 @@ You can do the test using the function below:
 ``` r
 struct_data_metadata(data_root = here("data", "spectra", "2018-BDM"))
 ```
-
-This condensed integrity test verifies whether both metadata and data are complete, for each of the dates separately.
 
 This final check ensures that there is a minimum chance that samples were wrongly labelled or measurement positions were swapped.
 
