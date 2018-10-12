@@ -51,17 +51,17 @@ struct_data_metadata <- function(data_root, pattern = "\\.ods$") {
   if (length(metadata_missing) == 0 && length(data_missing) == 0) {
     message("Measurement data files and metadata record are complete.")
   } else if (length(metadata_missing) > 0 && length(data_missing) > 0) {
-    error(paste("Measurment data files and metadata are not complete.",
+    stop(paste("Measurment data files and metadata are not complete.",
       "Metadata entries for the following measurement data <files are missing:",
       metadata_missing, ".",
       "Measurement data files for the following metadata entries are missing:",
       data_missing, "."))
   } else if (length(metadata_missing) > 0) {
-    error(paste("Measurment data files and metadata are not complete.",
+    stop(paste("Measurment data files and metadata are not complete.",
       "Metadata entries for the following measurement data <files are missing:",
       metadata_missing, "."))
   } else {
-    error(paste("Measurement data files for the following metadata entries
+    stop(paste("Measurement data files for the following metadata entries
       are missing:", data_missing, "."))
   }
   
