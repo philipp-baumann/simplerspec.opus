@@ -17,13 +17,15 @@ devtools::install_github("philipp-baumann/simplerspec.opus")
 Perform folder, file, and data and metadata integrity tests
 -----------------------------------------------------------
 
-You can test the below expectations in one handy exported function:
-
 ``` r
+# Load packages
 pkgs <- c("simplerspec.opus", "here")
 lapply(pkgs, library, character.only = TRUE)
+```
 
-# You only need to specify the root folder of the data directory
+You can do the test using the function below:
+
+``` r
 struct_data_metadata(data_root = here("data", "spectra", "2018-BDM"))
 ```
 
