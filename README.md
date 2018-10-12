@@ -17,7 +17,7 @@ devtools::install_github("philipp-baumann/simplerspec.opus")
 Perform folder, file, and data and metadata integrity tests
 -----------------------------------------------------------
 
-This test verifies whether both metadata and data are complete, for each of the date folders separately.
+This test verifies whether both metadata and data are complete, for each of the "date" folders separately.
 
 ``` r
 # Load packages
