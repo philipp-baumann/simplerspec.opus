@@ -211,7 +211,7 @@ zerofill_date <- function(data_root) {
   # Add leading zeros for month and day
   data_folders_zerofilled <- map(data_folders_split_int,
     # `.at` modifies only at second (month) and third (day) vector element
-    ~ purrr::modify_at(.x, .at = 2:3, ~ sprintf("%02d", .x))
+    ~ unlist(purrr::modify_at(as.list(.x), .at = 2:3, ~ sprintf("%02d", .x)))
   )
   # Paste year, month, and day to obtain %yyyy-mm-dd% date format
   map_chr(data_folders_zerofilled, ~ paste(.x, collapse = "-"))
