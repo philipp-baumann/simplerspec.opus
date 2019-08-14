@@ -18,13 +18,16 @@ The goal of simplerspec.opus is to facilitate spectral measurement workflows
 for Bruker spectrometers. It is tailored to file outputs and directory 
 structures produced by the Bruker OPUS and OPUS Lab software.
 
-## Installation
+## Installation and prerequisites
 
 You can install the most recent version of simplerspec.opus using
 
 ``` r
-devtools::install_github("philipp-baumann/simplerspec.opus")
+if (!require("remotes")) install.packages("remotes")
+remotes::install_github("philipp-baumann/simplerspec.opus")
 ```
+
+This package assumes that OPUS measurements are organized in folders (one per measurement day). 
 
 ## Perform folder, file, and data and metadata integrity tests
 
