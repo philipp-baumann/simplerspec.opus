@@ -1,12 +1,13 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
-simplerspec.opus
-================
 
-The goal of simplerspec.opus is to facilitate spectral measurement workflows for Bruker spectrometers. It is tailored to file outputs and directory structures produced by the Bruker OPUS and OPUS Lab software.
+# simplerspec.opus
 
-Installation
-------------
+The goal of simplerspec.opus is to facilitate spectral measurement
+workflows for Bruker spectrometers. It is tailored to file outputs and
+directory structures produced by the Bruker OPUS and OPUS Lab software.
+
+## Installation
 
 You can install the most recent version of simplerspec.opus using
 
@@ -14,10 +15,13 @@ You can install the most recent version of simplerspec.opus using
 devtools::install_github("philipp-baumann/simplerspec.opus")
 ```
 
-Perform folder, file, and data and metadata integrity tests
------------------------------------------------------------
+## Perform folder, file, and data and metadata integrity tests
 
-This test verifies whether both metadata and data are complete, for each of the "date" folders separately. The binary Bruker OPUS files, that contain all spectral measurements and aquisition parameters, are located in folders named by date. The names are unluckily in the format `"YYYY_M_D"`. That does not follow
+This test verifies whether both metadata and data are complete, for each
+of the “date” folders separately. The binary Bruker OPUS files, that
+contain all spectral measurements and aquisition parameters, are located
+in folders named by date. The names are unluckily in the format
+`"YYYY_M_D"`. That does not follow  
 [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601).
 
 ``` r
@@ -32,28 +36,49 @@ You can do the test using the function below:
 test_data_metadata(data_root = here("data", "spectra", "2018-BDM"))
 ```
 
-This test ensures that there is a minimum chance that samples were wrongly labelled or measurement positions were swapped.
+This test ensures that there is a minimum chance that samples were
+wrongly labelled or measurement positions were swapped.
 
 ### Test category 1:
 
--   **Expectation:** Metadata are Open Office spreadsheets with extension `.ods`. The file name has a date prefix of format `YYYY-MM-DD`.
+  - **Expectation:** Metadata are Open Office spreadsheets with
+    extension `.ods`. The file name has a date prefix of format
+    `YYYY-MM-DD`.
 
--   **Test:** Test whether every measurement folder has a corresponding metadata file. This is done by extracting `"YYYY_M_D"` from the metadata file names, and converting to `"YYYY-MM-DD"`, and check if metadata file name information and and folder names are all identical.
+  - **Test:** Test whether every measurement folder has a corresponding
+    metadata file. This is done by extracting `"YYYY_M_D"` from the
+    metadata file names, and converting to `"YYYY-MM-DD"`, and check if
+    metadata file name information and and folder names are all
+    identical.
 
 ### Test category 2:
 
--   **Expectation:** Every metadata spreadsheet has a `date` column with header named identically, where entries represent dates in format `YYYY-MM-DD`.
+  - **Expectation:** Every metadata spreadsheet has a `date` column with
+    header named identically, where entries represent dates in format
+    `YYYY-MM-DD`.
 
--   **Test:** Test whether the `date` column entries are matching the expanded measurement folders for each date.
+  - **Test:** Test whether the `date` column entries are matching the
+    expanded measurement folders for each
+date.
 
 ### Tests category 3: All OPUS files have the correct complete metadata and vice versa
 
--   **Expectations:** The metadata spreadsheets contain a column `pos` that specifies the well plate positions, and also a column `sample_id`. The `sample_id` of a sample needs to be unique. The OPUS files that are generated after measurements have a `_<plate-position>` suffix after a `sample_id` string.
+  - **Expectations:** The metadata spreadsheets contain a column `pos`
+    that specifies the well plate positions, and also a column
+    `sample_id`. The `sample_id` of a sample needs to be unique. The
+    OPUS files that are generated after measurements have a
+    `_<plate-position>` suffix after a `sample_id` string.
 
--   **Test:** In order to check that there is a metadata entry for each measured file, file names are reconstructed from `sample_id` and `pos` information. Further, repetition numbers starting from 0 are sequentially numbered by an integer increasing by 1, are reconstructed as file extension
-    `.<repetition_number>`. This is what is expected to be generated from the measurements managed by the Bruker OPUS lab interface.
+  - **Test:** In order to check that there is a metadata entry for each
+    measured file, file names are reconstructed from `sample_id` and
+    `pos` information. Further, repetition numbers starting from 0 are
+    sequentially numbered by an integer increasing by 1, are
+    reconstructed as file extension  
+    `.<repetition_number>`. This is what is expected to be generated
+    from the measurements managed by the Bruker OPUS lab interface.
 
-This could be an example test message when data and metadata are not following expectations:
+This could be an example test message when data and metadata are not
+following expectations:
 
 ``` r
 # > test_data_metadata(data_root = here("data", "spectra", "2018-BDM"))
@@ -66,7 +91,9 @@ This could be an example test message when data and metadata are not following e
 # ), meas_folder_exp = c("2018-10-02", "2018-10-02", "2018-10-02", "2018-10-02", "2018-10-02", "2018-10-02", "2018-10-02", "2018-10-02", "2018-10-02", "2018-10-02", "2018-10-02", "2018-10-02"), meas_rep_meta = c(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), file_id = c("NA_A4.0", "NA_B4.0", "NA_C4.0", "NA_D4.0", "NA_A5.0", "NA_B5.0", "NA_C5.0", "NA_D5.0", "NA_A6.0", "NA_B
 ```
 
-In that case, have a look at the message(s), check the metadata spreadsheets, fix accordingly, and finally re-test. If tests succeed, you will receive e.g.
+In that case, have a look at the message(s), check the metadata
+spreadsheets, fix accordingly, and finally re-test. If tests succeed,
+you will receive e.g.
 
 ``` r
 # > test_data_metadata(data_root = here("data", "spectra", "2018-BDM"))
@@ -90,4 +117,22 @@ In that case, have a look at the message(s), check the metadata spreadsheets, fi
 # 10 2018… 30015 KB… 30015 KB015 …        1 C1    2018-09-03                  0 30015 …
 # # ... with 3,428 more rows, and 2 more variables: sample_id_reps <int>,
 # #   date_file <chr>
+```
+
+# Read spectra
+
+Henceforth, time is ready to read the spectra ;-)
+
+``` r
+future::plan(future::multiprocess)
+
+# Read OPUS test files
+files_wizardproj_2019 <-  list_opus_file_paths(
+  path = here("data", "spectra", "2019-wizardproj"))
+
+spc_lst_wizardproj_2019 <- map(files_wizardproj_2019, ~ future_map(.x,
+  ~ read_opus_univ(fnames = .x,
+    extract = c("spc")),
+  .progress = TRUE)
+)
 ```

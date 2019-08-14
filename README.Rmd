@@ -47,7 +47,6 @@ You can do the test using the function below:
 test_data_metadata(data_root = here("data", "spectra", "2018-BDM"))
 ```
 
-
 This test ensures that there is a minimum chance that samples were wrongly 
 labelled or measurement positions were swapped.
 
@@ -129,5 +128,22 @@ fix accordingly, and finally re-test. If tests succeed, you will receive e.g.
 # #   date_file <chr>
 ```
 
+# Read spectra
+
+Henceforth, time is ready to read the spectra ;-)
+
+```{r, eval = FALSE}
+future::plan(future::multiprocess)
+
+# Read OPUS test files
+files_wizardproj_2019 <-  list_opus_file_paths(
+  path = here("data", "spectra", "2019-wizardproj"))
+
+spc_lst_wizardproj_2019 <- map(files_wizardproj_2019, ~ future_map(.x,
+  ~ read_opus_univ(fnames = .x,
+    extract = c("spc")),
+  .progress = TRUE)
+)
+```
 
 
