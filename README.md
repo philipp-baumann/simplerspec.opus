@@ -1,18 +1,11 @@
 
-<!-- README.md is generated from README.Rmd. Please edit that file -->
-
 # simplerspec.opus
 
-<<<<<<< HEAD
 The goal of simplerspec.opus is to facilitate spectral measurement
 workflows for Bruker spectrometers. It is tailored to file outputs and
 directory structures produced by the Bruker OPUS and OPUS Lab software.
 
-## Installation
-=======
-Installation and prerequisites
-------------------------------
->>>>>>> 8eba7d426d06c8e816781e0760ec2151853b93bb
+## Installation and prerequisites
 
 You can install the most recent version of simplerspec.opus using
 
@@ -21,14 +14,10 @@ if (!require("remotes")) install.packages("remotes")
 remotes::install_github("philipp-baumann/simplerspec.opus")
 ```
 
-<<<<<<< HEAD
-## Perform folder, file, and data and metadata integrity tests
-=======
-This package assumes that OPUS measurements are organized in folders (one per measurement day).
+This package assumes that OPUS measurements are organized in folders
+(one per measurement day).
 
-Perform folder, file, and data and metadata integrity tests
------------------------------------------------------------
->>>>>>> 8eba7d426d06c8e816781e0760ec2151853b93bb
+## Perform folder, file, and data and metadata integrity tests
 
 This test verifies whether both metadata and data are complete, for each
 of the “date” folders separately. The binary Bruker OPUS files, that
